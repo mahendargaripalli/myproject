@@ -1,0 +1,17 @@
+---
+- hosts: webservers
+  become: true
+  become_user: root
+  tasks:
+  - name: install tomcat
+    yum: name=tomcat state=present
+  - name: start tomcat
+    service: name=tomcat state=started
+  - name: install docker
+    yum: name=docker state=present
+  - name: start docker
+    service: name=docker state=started
+  - name: pull the image
+    command: docker pull sonal04/addressbook:1
+  - name: run the image
+    command: docker run -itd -P sonal04/addressbook:1
