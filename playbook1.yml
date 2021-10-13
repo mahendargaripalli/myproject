@@ -1,0 +1,17 @@
+---
+- hosts: webservers2
+  become: true
+  become_user: root
+  tasks:
+  - name: install docker
+    yum: name=docker state=present
+  - name: start docker
+    service: name=docker state=started
+  - name: pull the image
+    command: docker pull sonal04/addressbook:1
+  - name: run the image
+    command:  docker run -itd --name edurekaweb2 -P sonal04/addressbook:1
+    notify: restart docker
+  handlers:
+  - name: restart docker
+    service: name=docker state=restarted
