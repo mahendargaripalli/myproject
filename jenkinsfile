@@ -13,7 +13,7 @@ pipeline{
             steps
             {
                 
-               ansiblePlaybook credentialsId: '23rdjuly', disableHostKeyChecking: true, installation: 'Myansible', inventory: 'dev.inv', playbook: 'playbook.yml'
+               ansiblePlaybook credentialsId: 'ubkey', disableHostKeyChecking: true, installation: 'Myansible', inventory: 'dev.inv', playbook: 'playbook.yml'
                
             }
         }
